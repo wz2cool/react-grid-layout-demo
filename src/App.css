@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+.react-grid-item {
+  background: #ccc;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
