@@ -11,6 +11,7 @@
     "react-dom": "^16.8.1",
     "react-grid-layout": "^0.16.6",
     "react-scripts": "2.1.4",
+    "ts-commons": "^1.0.13",
     "typescript": "3.3.3"
   },
   "scripts": {
