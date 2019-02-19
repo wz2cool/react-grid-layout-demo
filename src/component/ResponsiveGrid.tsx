@@ -33,21 +33,6 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
             this.onLayoutChange(layout, layouts);
           }}
         >
-          {/* <div key="1" data-grid={{ w: 2, h: 3, x: 0, y: 0, minW: 2, minH: 3 }}>
-            <span className="text">1</span>
-          </div>
-          <div key="2" data-grid={{ w: 2, h: 3, x: 2, y: 0, minW: 2, minH: 3 }}>
-            <span className="text">2</span>
-          </div>
-          <div key="3" data-grid={{ w: 2, h: 3, x: 4, y: 0, minW: 2, minH: 3 }}>
-            <span className="text">3</span>
-          </div>
-          <div key="4" data-grid={{ w: 2, h: 3, x: 6, y: 0, minW: 2, minH: 3 }}>
-            <span className="text">4</span>
-          </div>
-          <div key="5" data-grid={{ w: 2, h: 3, x: 8, y: 0, minW: 2, minH: 3 }}>
-            <span className="text">5</span>
-          </div> */}
           {this.state.itemLayouts.map((value, i) => {
             return (
               <div key={value.i} data-grid={value}>
@@ -95,8 +80,8 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
     ];
   }
 
-  private getFromLS = (key: string): any => {
-    let ls: any = {};
+  private getFromLS = (key: string): Layouts => {
+    let ls: { [key: string]: Layouts } = {};
     if (localStorage) {
       try {
         const localData = localStorage.getItem("rgl-8");
@@ -112,7 +97,8 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
 
   private saveToLS = (key: string, value: Layouts): void => {
     if (localStorage) {
-      localStorage.setItem("rgl-8", JSON.stringify({ [key]: value }));
+      const savedValue = { [key]: value };
+      localStorage.setItem("rgl-8", JSON.stringify(savedValue));
     }
   };
 }
