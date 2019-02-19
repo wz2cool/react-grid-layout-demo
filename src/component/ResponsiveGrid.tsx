@@ -6,6 +6,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface ResponsiveGridState {
   layouts: Layouts;
+  itemLayouts: Layout[];
 }
 
 export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
@@ -13,7 +14,8 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
     super(props);
 
     this.state = {
-      layouts: this.getFromLS("layouts") || {}
+      layouts: this.getFromLS("layouts") || {},
+      itemLayouts: this.getDefaultItemLayouts()
     };
   }
 
@@ -30,7 +32,7 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
             this.onLayoutChange(layout, layouts);
           }}
         >
-          <div key="1" data-grid={{ w: 2, h: 3, x: 0, y: 0, minW: 2, minH: 3 }}>
+          {/* <div key="1" data-grid={{ w: 2, h: 3, x: 0, y: 0, minW: 2, minH: 3 }}>
             <span className="text">1</span>
           </div>
           <div key="2" data-grid={{ w: 2, h: 3, x: 2, y: 0, minW: 2, minH: 3 }}>
@@ -44,7 +46,17 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
           </div>
           <div key="5" data-grid={{ w: 2, h: 3, x: 8, y: 0, minW: 2, minH: 3 }}>
             <span className="text">5</span>
-          </div>
+          </div> */}
+          {this.state.itemLayouts.map((value, i) => {
+            return (
+              <div
+                key={value.i}
+                data-grid={value}
+              >
+                <span className="text">{value.i}</span>
+              </div>
+            );
+          })}
         </ResponsiveGridLayout>
       </div>
     );
