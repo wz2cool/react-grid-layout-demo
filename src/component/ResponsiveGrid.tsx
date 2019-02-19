@@ -23,6 +23,7 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
     return (
       <div>
         <button onClick={() => this.resetLayout()}>Reset Layout</button>
+        <button onClick={() => this.addNew()}>addNew</button>
         <ResponsiveGridLayout
           className="layout"
           layouts={this.state.layouts}
@@ -49,10 +50,7 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
           </div> */}
           {this.state.itemLayouts.map((value, i) => {
             return (
-              <div
-                key={value.i}
-                data-grid={value}
-              >
+              <div key={value.i} data-grid={value}>
                 <span className="text">{value.i}</span>
               </div>
             );
@@ -71,7 +69,21 @@ export class ResponsiveGrid extends Component<any, ResponsiveGridState> {
     this.setState({ layouts });
   }
 
-  private addNew = () => {};
+  private addNew = () => {
+    const newItemLayouts = Object.assign([], this.state.itemLayouts);
+    newItemLayouts.push({
+      i: "6",
+      w: 2,
+      h: 3,
+      x: 10,
+      y: 0,
+      minW: 2,
+      minH: 3
+    });
+    this.setState({
+      itemLayouts: newItemLayouts
+    });
+  };
 
   private getDefaultItemLayouts(): Layout[] {
     return [
